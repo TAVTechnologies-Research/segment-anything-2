@@ -11,6 +11,8 @@ from hydra import compose
 from hydra.utils import instantiate
 from omegaconf import OmegaConf
 
+from .sam2_video_predictor import SAM2VideoPredictor
+
 
 def build_sam2(
     config_file,
@@ -49,7 +51,7 @@ def build_sam2_video_predictor(
     hydra_overrides_extra=[],
     apply_postprocessing=True,
     **kwargs,
-):
+) -> SAM2VideoPredictor:
     hydra_overrides = [
         "++model._target_=sam2.sam2_video_predictor.SAM2VideoPredictor",
     ]

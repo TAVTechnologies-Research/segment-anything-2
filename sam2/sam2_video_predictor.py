@@ -6,6 +6,7 @@
 
 import warnings
 from collections import OrderedDict
+from typing import Tuple
 
 import torch
 
@@ -176,7 +177,7 @@ class SAM2VideoPredictor(SAM2Base):
         clear_old_points=True,
         normalize_coords=True,
         box=None,
-    ):
+    ) -> Tuple[int, torch.Tensor, torch.Tensor]:
         """Add new points to a frame."""
         obj_idx = self._obj_id_to_idx(inference_state, obj_id)
         point_inputs_per_frame = inference_state["point_inputs_per_obj"][obj_idx]
