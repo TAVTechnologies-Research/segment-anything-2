@@ -6,7 +6,7 @@
 
 import warnings
 from collections import OrderedDict
-from typing import Tuple
+from typing import Tuple, Generator
 
 import torch
 
@@ -651,7 +651,7 @@ class SAM2VideoPredictor(SAM2Base):
         start_frame_idx=None,
         max_frame_num_to_track=None,
         reverse=False,
-    ):
+    ) -> Generator[Tuple[int, list, torch.Tensor], None, None]:
         """Propagate the input points across frames to track in the entire video."""
         self.propagate_in_video_preflight(inference_state)
 
